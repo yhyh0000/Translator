@@ -90,6 +90,7 @@ public class QFanApiUtil {
             Dict result = new Dict();
             result.set("code", "200");
             result.set("result", jsonObject.getStr("result"));
+            result.set("message", "获取成功");
             return result;
         }catch (Exception e){
             e.printStackTrace();
