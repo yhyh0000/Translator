@@ -1,7 +1,7 @@
 package com.yinggg.translator.Service.impl;
 
 import com.yinggg.translator.Dao.UserMapper;
-import com.yinggg.translator.Pojo.User;
+import com.yinggg.translator.pojo.User;
 import com.yinggg.translator.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

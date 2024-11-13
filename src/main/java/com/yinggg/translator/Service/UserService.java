@@ -1,6 +1,6 @@
 package com.yinggg.translator.Service;
 
-import com.yinggg.translator.Pojo.User;
+import com.yinggg.translator.pojo.User;
 
 import java.util.ArrayList;
 

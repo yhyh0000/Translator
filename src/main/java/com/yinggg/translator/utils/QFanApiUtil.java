@@ -30,6 +30,7 @@ public class QFanApiUtil {
         this.secretKey = secretKey;
     }
 
+    //获取千帆AccessToken
     public Dict getAccessToken() {
         try {
             if (tokenUrl == null || apiKey == null || secretKey == null) {
@@ -65,6 +66,7 @@ public class QFanApiUtil {
         }
     }
 
+    //对千帆api方式请求
     public Dict commonReq(ArrayList messages) {
 
         try{

@@ -1,6 +1,7 @@
 package com.yinggg.translator.Dao;
 
-import com.yinggg.translator.Pojo.User;
+
+import com.yinggg.translator.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.ArrayList;

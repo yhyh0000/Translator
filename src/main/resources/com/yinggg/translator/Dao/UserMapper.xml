@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yinggg.translator.Dao.UserMapper">
 
-    <select id="queryAllUserInfo" resultType="com.yinggg.translator.Pojo.User">
+    <select id="queryAllUserInfo" resultType="com.yinggg.translator.pojo.User">
         select * from t_user;
     </select>
 

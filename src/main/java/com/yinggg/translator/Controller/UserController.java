@@ -1,5 +1,6 @@
 package com.yinggg.translator.Controller;
 
+
 import cn.hutool.core.lang.Dict;
 import cn.hutool.json.JSONUtil;
 import com.yinggg.translator.Service.impl.UserServiceImpl;
@@ -23,7 +24,8 @@ public class UserController {
         Dict data = new Dict();
         data.set("code", 200);
         data.set("data", userService.queryAllUserInfo());
-        data.set("message","请求成功");
+        data.set("message", "请求成功");
         return data;
     }
+
 }
