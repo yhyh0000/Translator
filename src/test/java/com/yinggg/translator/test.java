@@ -1,16 +1,22 @@
 package com.yinggg.translator;
 
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.json.JSONUtil;
+import com.yinggg.translator.Dao.UserMapper;
 import com.yinggg.translator.utils.QFanApiUtil;
 import cn.hutool.core.lang.Dict;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class test {
 
@@ -36,5 +42,11 @@ public class test {
         messages.add(JSONUtil.createObj().set("role","user").set("content","中国"));
         Dict dict = qFanApiUtil.commonReq(messages);
         System.out.println(dict.getStr("result"));
+    }
+    @Autowired
+    UserMapper userMapper;
+    @Test
+    void testQueryAllUserInfo(){
+        System.out.println(ArrayUtil.toString(userMapper.queryAllUserInfo()));
     }
 }

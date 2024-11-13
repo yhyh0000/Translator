@@ -77,7 +77,7 @@ public class QFanApiUtil {
             }
             JSONObject data = JSONUtil.createObj();
             data.set("messages", messages);
-            data.set("temperature",4.0);
+            data.set("temperature",1.0);
             data.set("response_format","json_object");
 
             String requestBody = HttpRequest.post(yi_34b_chatUrl + access_token)
