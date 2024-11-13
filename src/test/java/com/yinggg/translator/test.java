@@ -33,7 +33,7 @@ public class test {
     @Test
     void testCommonReq(){
         ArrayList messages = new ArrayList();
-        messages.add(JSONUtil.createObj().set("role","user").set("content","我想去自驾游你有什么推荐的地方吗？"));
+        messages.add(JSONUtil.createObj().set("role","user").set("content","中国"));
         Dict dict = qFanApiUtil.commonReq(messages);
         System.out.println(dict.getStr("result"));
     }
