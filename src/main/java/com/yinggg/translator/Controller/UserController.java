@@ -1,31 +1,48 @@
 package com.yinggg.translator.Controller;
-
-
-import cn.hutool.core.lang.Dict;
-import cn.hutool.json.JSONUtil;
-import com.yinggg.translator.Service.impl.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.google.common.base.Preconditions;
+import com.yinggg.translator.entity.TUser;
+import com.yinggg.translator.service.TUserService;
+import com.yinggg.translator.utils.JwtUtils;
+import com.yinggg.translator.utils.Result;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.util.ArrayList;
-
+@Slf4j
 @RestController
-@RequestMapping("/user")
 public class UserController {
+    @Resource
+    private TUserService tUserService;
 
-    @Autowired
-    UserServiceImpl userService;
+    @PostMapping ("/login")
+    public Result login(@RequestBody TUser tuser) {
+        log.info(JSON.toJSONString(tuser));
 
-    @GetMapping("/queryAllUserInfo")
-    public Dict queryAllUserInfo() {
-        Dict data = new Dict();
-        data.set("code", 200);
-        data.set("data", userService.queryAllUserInfo());
-        data.set("message", "请求成功");
-        return data;
+        //guava参数校验
+        Preconditions.checkNotNull(tuser.getAccount(), "账号不能为空");
+        Preconditions.checkNotNull(tuser.getPassword(), "密码不能为空");
+        TUser user = tUserService.login(tuser);
+        if (user != null) {
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("id", user.getId());
+            claims.put("name", user.getAccount());
+            claims.put("username", user.getPassword());
+            String jwt = JwtUtils.generateJwt(claims); //jwt包含了当前登录的信息
+            return Result.success(jwt);
+        } else {
+            return Result.error("登录失败");
+        }
     }
-
 }
+
+
+
+
+

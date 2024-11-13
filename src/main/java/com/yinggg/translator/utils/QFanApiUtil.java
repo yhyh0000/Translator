@@ -30,7 +30,6 @@ public class QFanApiUtil {
         this.secretKey = secretKey;
     }
 
-    //获取千帆AccessToken
     public Dict getAccessToken() {
         try {
             if (tokenUrl == null || apiKey == null || secretKey == null) {
@@ -66,7 +65,6 @@ public class QFanApiUtil {
         }
     }
 
-    //对千帆api方式请求
     public Dict commonReq(ArrayList messages) {
 
         try{
@@ -79,7 +77,7 @@ public class QFanApiUtil {
             }
             JSONObject data = JSONUtil.createObj();
             data.set("messages", messages);
-            data.set("temperature",1.0);
+            data.set("temperature",4.0);
             data.set("response_format","json_object");
 
             String requestBody = HttpRequest.post(yi_34b_chatUrl + access_token)
