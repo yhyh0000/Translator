@@ -108,6 +108,34 @@
     </dependencyManagement>
 
     <build>
+        <!--引入本地资源-->
+        <resources>
+            <!--加载lib文件，特殊情况下会有lib，但大部分都靠依赖下载了-->
+            <resource>
+                <directory>lib</directory>
+                <targetPath>BOOT-INF/lib/</targetPath>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
+            <!--打jar包-->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <!--将properties和xml文件编译-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
         <plugins>
             <!-- Maven Compiler Plugin -->
             <plugin>
@@ -139,6 +167,7 @@
                 </executions>
             </plugin>
         </plugins>
+
     </build>
 
 </project>
