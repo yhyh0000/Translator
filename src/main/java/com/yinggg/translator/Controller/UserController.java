@@ -32,8 +32,8 @@ public class UserController {
         if (user != null) {
             Map<String, Object> claims = new HashMap<>();
             claims.put("id", user.getId());
-            claims.put("name", user.getAccount());
-            claims.put("username", user.getPassword());
+            claims.put("account", user.getAccount());
+            claims.put("password", user.getPassword());
             String jwt = JwtUtils.generateJwt(claims); //jwt包含了当前登录的信息
             return Result.success(jwt);
         } else {
