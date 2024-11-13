@@ -38,11 +38,21 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.6.14</version>
         </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>swagger-ui</artifactId>
+            <version>4.15.5</version>
+        </dependency>
         <!--   hutool    -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.8.22</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
@@ -56,8 +66,8 @@
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus</artifactId>
-                <version>3.5.3.1</version>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.5.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -80,7 +90,7 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.yinggg.translator.TranslatorApplication</mainClass>
-                    <skip>true</skip>
+
                 </configuration>
                 <executions>
                     <execution>
