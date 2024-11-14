@@ -8,13 +8,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+/**
+ * 翻译记录表业务
+ */
 @Service
 public class TTranslationRecordsServiceImpl implements TTranslationRecordsService {
     @Autowired
     TTranslationRecordsDao tTranslationRecordsDao;
 
     @Override
-    public ArrayList<TTranslationRecords> queryAll() {
-        return tTranslationRecordsDao.queryAll();
+    public ArrayList<TTranslationRecords> getHistory() {
+        return tTranslationRecordsDao.getHistory();
     }
 }

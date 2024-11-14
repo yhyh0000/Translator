@@ -12,5 +12,5 @@ public interface TTranslationRecordsDao {
      * 查询所有错题记录
      * @return 实例对象
      */
-    ArrayList<TTranslationRecords> queryAll();
+    ArrayList<TTranslationRecords> getHistory();
 }

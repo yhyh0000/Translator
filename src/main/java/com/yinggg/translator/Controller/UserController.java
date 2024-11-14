@@ -26,13 +26,13 @@ public class UserController {
         log.info(JSON.toJSONString(tuser));
 
         //guava参数校验
-        Preconditions.checkNotNull(tuser.getAccount(), "账号不能为空");
+        Preconditions.checkNotNull(tuser.getUsername(), "账号不能为空");
         Preconditions.checkNotNull(tuser.getPassword(), "密码不能为空");
         TUser user = tUserService.login(tuser);
         if (user != null) {
             Map<String, Object> claims = new HashMap<>();
             claims.put("id", user.getId());
-            claims.put("account", user.getAccount());
+            claims.put("account", user.getUsername());
             claims.put("password", user.getPassword());
             String jwt = JwtUtils.generateJwt(claims); //jwt包含了当前登录的信息
             return Result.success(jwt);
