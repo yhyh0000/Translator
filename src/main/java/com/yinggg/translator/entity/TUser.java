@@ -18,11 +18,13 @@ public class TUser implements Serializable {
     /**
      * 用户账户
      */
-    private String account;
+    private String username;
     /**
      * 用户密码
      */
     private String password;
+    private String email;
+    private String created_at;
 
 
 }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class TTranslationRecordsServiceImpl implements TTranslationRecordsService {
     @Autowired
     TTranslationRecordsDao tTranslationRecordsDao;
+
     @Override
     public ArrayList<TTranslationRecords> queryAll() {
         return tTranslationRecordsDao.queryAll();
