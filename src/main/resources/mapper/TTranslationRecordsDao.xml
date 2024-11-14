@@ -3,7 +3,17 @@
 <mapper namespace="com.yinggg.translator.mapper.TTranslationRecordsDao">
 
     <!--  查询所有错题记录  -->
-    <select id="getHistory" resultType="com.yinggg.translator.entity.TTranslationRecords">
-        select * from t_translation_records;
+    <select id="getHistoryByUserId" parameterType="integer"
+            resultType="com.yinggg.translator.entity.TTranslationRecords">
+        select *
+        from t_translation_records
+        where user_id = #{userId};
     </select>
+
+    <insert id="addTranslate" parameterType="com.yinggg.translator.entity.TTranslationRecords" keyProperty="id"
+            useGeneratedKeys="true">
+        insert into t_translation_records
+        values (default, #{userId}, #{originalText}, #{translatedText}, #{sourceLanguage}, #{targetLanguage},
+                #{translationDate}, #{differences})
+    </insert>
 </mapper>

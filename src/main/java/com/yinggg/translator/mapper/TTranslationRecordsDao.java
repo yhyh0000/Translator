@@ -12,5 +12,12 @@ public interface TTranslationRecordsDao {
      * 查询所有错题记录
      * @return 实例对象
      */
-    ArrayList<TTranslationRecords> getHistory();
+    ArrayList<TTranslationRecords> getHistoryByUserId(Integer userId);
+
+    /**
+     * 添加错词记录
+     * @param tTranslationRecords 实体对象
+     * @return 受影响的行数
+     */
+    int  addTranslate(TTranslationRecords tTranslationRecords);
 }

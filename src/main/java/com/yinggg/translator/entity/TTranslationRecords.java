@@ -2,6 +2,8 @@ package com.yinggg.translator.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 
 /**
  * (t_translation_records)实体类
@@ -10,7 +12,7 @@ import lombok.Data;
  * @since 2024-11-14 14:24:59
  */
 @Data
-public class TTranslationRecords {
+public class TTranslationRecords implements Serializable {
     /**
      *     id;  翻译记录 ID，自增长的主键
      *     user_id;   提交翻译请求的用户 ID，外键关联用户表
@@ -22,11 +24,11 @@ public class TTranslationRecords {
      *     differences;   用户自行翻译与软件翻译结果的差异（可存储为特定格式，如 JSON）
      */
     private int id;
-    private int user_id;
-    private String original_text;
-    private String translated_text;
-    private String source_language;
-    private String target_language;
-    private String translation_date;
+    private int userId;
+    private String originalText;
+    private String translatedText;
+    private String sourceLanguage;
+    private String targetLanguage;
+    private String translationDate;
     private String differences;
 }
