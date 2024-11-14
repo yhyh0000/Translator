@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yinggg.translator.mapper.TTranslationRecordsDao">
+
+    <!--  查询所有错题记录  -->
+    <select id="queryAll" resultType="com.yinggg.translator.entity.TTranslationRecords">
+        select * from t_translation_records;
+    </select>
+</mapper>
