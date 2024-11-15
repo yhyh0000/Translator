@@ -20,4 +20,11 @@ public interface TTranslationRecordsDao {
      * @return 受影响的行数
      */
     int  addTranslate(TTranslationRecords tTranslationRecords);
+
+    /**
+     * 更新错题记录
+     * @param tTranslationRecords 实体对象
+     * @return 受影响的行数
+     */
+    int updateTranslate(TTranslationRecords tTranslationRecords);
 }

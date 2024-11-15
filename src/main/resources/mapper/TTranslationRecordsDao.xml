@@ -10,10 +10,20 @@
         where user_id = #{userId};
     </select>
 
+    <!--  添加错题记录  -->
     <insert id="addTranslate" parameterType="com.yinggg.translator.entity.TTranslationRecords" keyProperty="id"
             useGeneratedKeys="true">
         insert into t_translation_records
         values (default, #{userId}, #{originalText}, #{translatedText}, #{sourceLanguage}, #{targetLanguage},
                 #{translationDate}, #{differences})
     </insert>
+
+    <!--  更新错题记录  -->
+    <update id="updateTranslate" parameterType="com.yinggg.translator.entity.TTranslationRecords">
+        update t_translation_records
+        set original_text   = #{originalText},
+            translated_text = #{translatedText},
+            differences = #{differences}
+        where id = #{id}
+    </update>
 </mapper>

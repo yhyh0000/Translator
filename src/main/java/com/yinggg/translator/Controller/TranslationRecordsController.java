@@ -30,7 +30,6 @@ public class TranslationRecordsController {
     public Result history(@RequestParam("userId") Integer userId) {
 
         ArrayList<TTranslationRecords> tTranslationRecords = tTranslationRecordsService.getHistoryByUserId(userId);
-        System.out.println(ArrayUtil.toString(tTranslationRecords));
         if (tTranslationRecords.isEmpty()) {
             return Result.error("获取历史记录失败");
         }
@@ -43,13 +42,22 @@ public class TranslationRecordsController {
      * @param tTranslationRecords
      * @return
      */
-    @PostMapping("/addTranslate")
+    @PostMapping("/history/addTranslate")
     public Result addTranslate(@RequestBody TTranslationRecords tTranslationRecords){
         int result = tTranslationRecordsService.addTranslate(tTranslationRecords);
         if(result == 0){
             return Result.error("添加失败");
         }
         return Result.success("添加成功");
+    }
+
+    @PostMapping("/history/update")
+    public Result updateTranslate(@RequestBody TTranslationRecords tTranslationRecords){
+        int result = tTranslationRecordsService.updateTranslate(tTranslationRecords);
+        if(result == 0){
+            return Result.error("更新失败");
+        }
+        return Result.success("更新成功");
     }
 
 }
