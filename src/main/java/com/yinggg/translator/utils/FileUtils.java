@@ -8,7 +8,10 @@ import java.io.InputStreamReader;
 import java.util.Iterator;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FileUtils {
     public String WordToText(InputStream inputStream) throws IOException {
         XWPFDocument document = new XWPFDocument(inputStream);

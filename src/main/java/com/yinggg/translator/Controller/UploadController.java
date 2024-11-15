@@ -19,7 +19,7 @@ public class UploadController {
     }
 
    @PostMapping("uploadFile")
-    public Result upload( MultipartFile file, TUser tUser) throws IOException {
+    public Result upload(@RequestParam("file") MultipartFile file, TUser tUser) throws IOException {
         boolean success = this.uploadService.upload(file, tUser.getId());
         return success ? Result.success("上传成功") : Result.error("上传失败");
     }
