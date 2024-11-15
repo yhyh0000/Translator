@@ -28,4 +28,9 @@ public class TTranslationRecordsServiceImpl implements TTranslationRecordsServic
     public int addTranslate(TTranslationRecords tTranslationRecords) {
         return tTranslationRecordsDao.addTranslate(tTranslationRecords);
     }
+
+    @Override
+    public int updateTranslate(TTranslationRecords tTranslationRecords) {
+        return tTranslationRecordsDao.updateTranslate(tTranslationRecords);
+    }
 }

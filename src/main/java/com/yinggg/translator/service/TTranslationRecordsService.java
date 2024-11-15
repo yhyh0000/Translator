@@ -8,4 +8,6 @@ public interface TTranslationRecordsService {
     ArrayList<TTranslationRecords> getHistoryByUserId(Integer userId);
 
     int  addTranslate(TTranslationRecords tTranslationRecords);
+
+    int updateTranslate(TTranslationRecords tTranslationRecords);
 }
