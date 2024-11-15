@@ -19,20 +19,24 @@ public class UploadServiceImpl implements UploadService {
     }
 
     public Boolean upload(MultipartFile file, Integer id) throws IOException {
-        String fileName = file.getOriginalFilename();
-        String suffixName = null;
-        String contxt = null;
-        if (fileName != null) {
-            suffixName = fileName.substring(fileName.lastIndexOf("."));
-            if (suffixName.equals(".txt")) {
-                contxt = this.fileUtils.WordToText(file.getInputStream());
-            } else {
-                if (!suffixName.equals(".doc")) {
-                    return false;
-                }
+        if (file == null || file.isEmpty()) {
+            return false;
+        }
 
-                contxt = this.fileUtils.WordToText(file.getInputStream());
+        String fileName = file.getOriginalFilename();
+        if (fileName == null) {
+            return false;
+        }
+
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        String contxt = null;
+
+        if (suffixName.equals(".txt") || suffixName.equals(".doc")) {
+            if (fileUtils == null) {
+                throw new IllegalStateException("FileUtils is not initialized");
             }
+
+            contxt = this.fileUtils.WordToText(file.getInputStream());
 
             if (contxt == null) {
                 return false;
