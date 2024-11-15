@@ -9,9 +9,9 @@ import java.util.Iterator;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-@Service
+@Component
 public class FileUtils {
     public String WordToText(InputStream inputStream) throws IOException {
         XWPFDocument document = new XWPFDocument(inputStream);
@@ -34,7 +34,6 @@ public class FileUtils {
         while((line = reader.readLine()) != null) {
             content.append(line).append("\n");
         }
-
         return content.toString();
     }
 }

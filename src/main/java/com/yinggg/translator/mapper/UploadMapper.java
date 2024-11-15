@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface UploadMapper {
-    @Insert({"insert into  t_translation_records (original_text,id) values (#{context},#{id})"})
-    void Upload(@Param("original_text") String var1, Integer var2);
+
+        @Insert("INSERT INTO t_translation_records (original_text, id) VALUES (#{originalText}, #{id})")
+        void Upload(@Param("originalText") String originalText, @Param("id") Integer id);
+
+
 }
