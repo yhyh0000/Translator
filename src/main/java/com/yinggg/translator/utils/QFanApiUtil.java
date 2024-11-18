@@ -13,9 +13,13 @@ import java.util.ArrayList;
 @Service
 public class QFanApiUtil {
 
+    // 千帆token请求地址
     private final String tokenUrl;
+    // 请求模型地址
     private final String yi_34b_chatUrl;
+    // 百度智能云申请的apiKey
     private final String apiKey;
+    // 百度智能云申请的secretKey
     private final String secretKey;
 
     // 构造函数注入配置
@@ -31,6 +35,11 @@ public class QFanApiUtil {
     }
 
     //获取千帆AccessToken
+
+    /**
+     * 返回 获取到的accessToken
+     * @return
+     */
     public Dict getAccessToken() {
         try {
             if (tokenUrl == null || apiKey == null || secretKey == null) {
@@ -67,6 +76,12 @@ public class QFanApiUtil {
     }
 
     //对千帆api方式请求
+
+    /**
+     *
+     * @param messages
+     * @return 返回千帆模型响应的数据
+     */
     public Dict commonReq(ArrayList messages) {
 
         try{

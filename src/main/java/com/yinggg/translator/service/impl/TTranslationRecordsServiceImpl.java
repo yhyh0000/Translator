@@ -18,7 +18,7 @@ import static com.yinggg.translator.utils.AdvancedDatabaseFormatValidatorUtils.v
 public class TTranslationRecordsServiceImpl implements TTranslationRecordsService {
     @Autowired
     TTranslationRecordsDao tTranslationRecordsDao;
-
+    /*=================================== queryHistoryByUserIdOrOrigOrTran方法开始 ===================================*/
     @Override
     public ArrayList<TTranslationRecords> queryHistoryByUserIdOrOrigOrTran(SearchRequest searchRequest) {
         int page = searchRequest.getPage();
@@ -37,10 +37,9 @@ public class TTranslationRecordsServiceImpl implements TTranslationRecordsServic
         }
         return tTranslationRecords;
     }
+    /*=================================== queryHistoryByUserIdOrOrigOrTran方法结束 ===================================*/
 
-    /*
-        记得对数据格式进行验证
-     */
+    /*=================================== addTranslate方法开始 ===================================*/
     @Override
     public int addTranslate(TTranslationRecords tTranslationRecords) {
         if (!validateDatabaseFormat(tTranslationRecords)) {
@@ -50,6 +49,9 @@ public class TTranslationRecordsServiceImpl implements TTranslationRecordsServic
         return tTranslationRecordsDao.addTranslate(tTranslationRecords);
 
     }
+    /*=================================== addTranslate方法结束 ===================================*/
+
+    /*=================================== updateTranslate 方法开始 ===================================*/
 
     @Override
     public int updateTranslate(TTranslationRecords tTranslationRecords) {
@@ -58,7 +60,9 @@ public class TTranslationRecordsServiceImpl implements TTranslationRecordsServic
         }
         return tTranslationRecordsDao.updateTranslate(tTranslationRecords);
     }
+    /*=================================== updateTranslate 方法结束 ===================================*/
 
+    /*=================================== deleteTranslate 方法结束 ===================================*/
     @Override
     public int deleteTranslate(Integer id) {
         if (id == null) {
@@ -66,4 +70,5 @@ public class TTranslationRecordsServiceImpl implements TTranslationRecordsServic
         }
         return tTranslationRecordsDao.deleteTranslate(id);
     }
+    /*=================================== deleteTranslate 方法结束 ===================================*/
 }

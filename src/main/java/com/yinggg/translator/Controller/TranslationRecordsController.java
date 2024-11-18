@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/translation")
@@ -20,6 +19,11 @@ public class TranslationRecordsController {
 
     /*=================================== search方法开始 ===================================*/
 
+    /**
+     * @API /history/search 用户搜查错题
+     * @param searchRequest
+     * @return
+     */
     @PostMapping("/history/search")
     public Result search(@RequestBody SearchRequest searchRequest) {
         int page = searchRequest.getPage();
@@ -52,7 +56,7 @@ public class TranslationRecordsController {
 
     /**
      * 先保留
-     *
+     * @API /history 获取错题
      * @param tTranslationRecords
      * @return
      */
@@ -71,9 +75,11 @@ public class TranslationRecordsController {
     /*=================================== history方法结束 ===================================*/
 
     /**
+     * @API /history/addTranslate 添加错题记录
      * @param tTranslationRecords
      * @return
      */
+    /*=================================== addTranslate方法开始 ===================================*/
     @PostMapping("/history/addTranslate")
     public Result addTranslate(@RequestBody TTranslationRecords tTranslationRecords) {
         int result = tTranslationRecordsService.addTranslate(tTranslationRecords);
@@ -82,6 +88,15 @@ public class TranslationRecordsController {
         }
         return Result.success("添加成功");
     }
+
+    /*=================================== addTranslate方法结束 ===================================*/
+
+    /**
+     * @param tTranslationRecords
+     * @return
+     * @API /history/update 用于更新错题记录
+     */
+    /*=================================== updateTranslate方法开始 ===================================*/
 
     @PostMapping("/history/update")
     public Result updateTranslate(@RequestBody TTranslationRecords tTranslationRecords) {
@@ -92,7 +107,15 @@ public class TranslationRecordsController {
         return Result.success("更新成功");
     }
 
+    /*=================================== updateTranslate方法结束 ===================================*/
+
+    /**
+     * @API /history/delete  删除错题记录
+     * @param id
+     * @return
+     */
     @PostMapping("/history/delete")
+    /*=================================== deleteTranslate方法开始 ===================================*/
     public Result deleteTranslate(@RequestParam("id") Integer id) {
         int result = tTranslationRecordsService.deleteTranslate(id);
         if (result == 0) {
@@ -100,6 +123,6 @@ public class TranslationRecordsController {
         }
         return Result.success("删除成功");
     }
-
+    /*=================================== deleteTranslate方法结束 ===================================*/
 
 }

@@ -9,6 +9,9 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.function.Function;
 
+/**
+ * 这个类是用来检查数据是否符合要求的工具类
+ */
 public class AdvancedDatabaseFormatValidatorUtils {
 
     // 日期格式字符串，与数据库表中的日期格式对应
