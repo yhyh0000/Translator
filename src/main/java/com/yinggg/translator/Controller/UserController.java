@@ -24,11 +24,11 @@ public class UserController {
     @PostMapping ("/login")
     public Result login(@RequestBody TUser tuser) {
         log.info(JSON.toJSONString(tuser));
-
         //guava参数校验
         Preconditions.checkNotNull(tuser.getUsername(), "账号不能为空");
         Preconditions.checkNotNull(tuser.getPassword(), "密码不能为空");
         TUser user = tUserService.login(tuser);
+        //JWT令牌生成
         if (user != null) {
             Map<String, Object> claims = new HashMap<>();
             claims.put("id", user.getId());
