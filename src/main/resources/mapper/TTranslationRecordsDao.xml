@@ -2,25 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yinggg.translator.mapper.TTranslationRecordsDao">
 
+
+    <!-- 定义resultMap，用于映射查询结果到TTranslationRecords实体类 -->
+    <resultMap id="TTranslationRecordsResultMap" type="com.yinggg.translator.entity.TTranslationRecords">
+        <!-- 假设属性名和字段名一一对应，这里直接映射即可 -->
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="originalText" column="original_text"/>
+        <result property="translatedText" column="translated_text"/>
+        <result property="sourceLanguage" column="source_language"/>
+        <result property="targetLanguage" column="target_language"/>
+        <result property="translationDate" column="translation_date"/>
+        <result property="differences" column="differences"/>
+    </resultMap>
     <!--  根据用户id 或 原文 或 译文 查询  -->
-    <select id="queryHistoryByUserIdOrOrigOrTran" parameterType="com.yinggg.translator.entity.TTranslationRecords"
-            resultType="com.yinggg.translator.entity.TTranslationRecords">
+    <select id="queryHistoryByUserIdOrOrigOrTran" parameterType="com.yinggg.translator.entity.SearchRequest"
+            resultMap="TTranslationRecordsResultMap">
         select *
         from t_translation_records
         <where>
-            <!-- 确保userId必须有值 -->
-            and user_id = #{userId}
-
-            <!-- originalText可空 -->
-            <if test="originalText!=null and originalText!=''">
-                and original_text = #{originalText};
+            user_id = #{userId}
+            <if test="originalText != null and originalText != ''">
+                and original_text = #{originalText}
             </if>
-
-            <!-- translatedText可空 -->
-            <if test="translatedText!=null and translatedText!=''">
-                and translated_text = #{translatedText};
+            <if test="translatedText != null and translatedText != ''">
+                and translated_text = #{translatedText}
             </if>
         </where>
+        <if test="page != null and size != null">
+            LIMIT #{page}, #{size}
+        </if>
     </select>
 
     <!--  添加错题记录  -->
@@ -39,4 +50,11 @@
             differences     = #{differences}
         where id = #{id}
     </update>
+
+    <!-- 删除错题   -->
+    <delete id="deleteTranslate" parameterType="integer">
+        delete
+        from t_translation_records
+        where id = #{id}
+    </delete>
 </mapper>

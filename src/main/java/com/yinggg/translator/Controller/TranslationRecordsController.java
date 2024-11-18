@@ -1,16 +1,13 @@
 package com.yinggg.translator.Controller;
 
-import cn.hutool.core.util.ArrayUtil;
-import com.alibaba.fastjson.JSON;
-import com.google.common.base.Preconditions;
+import com.yinggg.translator.entity.SearchRequest;
 import com.yinggg.translator.entity.TTranslationRecords;
-import com.yinggg.translator.entity.TUser;
 import com.yinggg.translator.service.impl.TTranslationRecordsServiceImpl;
-import com.yinggg.translator.utils.JwtUtils;
 import com.yinggg.translator.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,20 +18,57 @@ public class TranslationRecordsController {
     @Autowired
     TTranslationRecordsServiceImpl tTranslationRecordsService;
 
+    /*=================================== search方法开始 ===================================*/
+    
+    @PostMapping("/history/search")
+    public Result search(@RequestBody SearchRequest searchRequest) {
+        int page = searchRequest.getPage();
+        int size = searchRequest.getSize();
+
+        // 确保page值最小为1，避免出现负数偏移量等问题
+        if (page < 1) {
+            page = 1;
+        }
+
+        // 直接计算偏移量并设置到searchRequest中
+        searchRequest.setPage((page - 1) * size);
+
+        Logger logger = LoggerFactory.getLogger(TranslationRecordsController.class);
+
+        try {
+            ArrayList<TTranslationRecords> result = tTranslationRecordsService.queryHistoryByUserIdOrOrigOrTran(searchRequest);
+            if (result.isEmpty()) {
+                return Result.error("搜索失败");
+            }
+            return Result.success(result);
+        } catch (Exception e) {
+            // 记录详细的异常日志到文件等，根据具体配置而定
+            logger.error("搜索过程中出现异常", e);
+
+            return Result.error("搜索过程中出现异常，请稍后再试");
+        }
+    }
+    /*=================================== search方法结束 ===================================*/
+
     /**
+     * 先保留
+     *
      * @param tTranslationRecords
      * @return
      */
+    /*=================================== history方法开始 ===================================*/
     @PostMapping("/history")
     public Result history(@RequestBody TTranslationRecords tTranslationRecords) {
-
-        ArrayList<TTranslationRecords> result = tTranslationRecordsService.queryHistoryByUserIdOrOrigOrTran(tTranslationRecords);
-        if (result.isEmpty()) {
-            return Result.error("获取历史记录失败");
-        }
-
-        return Result.success(result);
+//        System.out.println(tTranslationRecords.toString());
+//        ArrayList<TTranslationRecords> result = tTranslationRecordsService.queryHistoryByUserIdOrOrigOrTran(tTranslationRecords);
+//        if (result.isEmpty()) {
+//            return Result.error("获取历史记录失败");
+//        }
+//
+//        return Result.success(result);
+        return Result.success("获取历史记录失败");
     }
+    /*=================================== history方法结束 ===================================*/
 
     /**
      * @param tTranslationRecords
@@ -57,5 +91,15 @@ public class TranslationRecordsController {
         }
         return Result.success("更新成功");
     }
+
+    @PostMapping("/history/delete")
+    public Result deleteTranslate(@RequestParam("id") Integer id) {
+        int result = tTranslationRecordsService.deleteTranslate(id);
+        if (result == 0) {
+            return Result.error("删除失败");
+        }
+        return Result.success("删除成功");
+    }
+
 
 }

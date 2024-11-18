@@ -1,5 +1,6 @@
 package com.yinggg.translator.mapper;
 
+import com.yinggg.translator.entity.SearchRequest;
 import com.yinggg.translator.entity.TTranslationRecords;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,7 +13,7 @@ public interface TTranslationRecordsDao {
      * 查询所有错题记录
      * @return 实例对象
      */
-    ArrayList<TTranslationRecords> queryHistoryByUserIdOrOrigOrTran(TTranslationRecords tTranslationRecords);
+    ArrayList<TTranslationRecords> queryHistoryByUserIdOrOrigOrTran(SearchRequest searchRequest);
 
     /**
      * 添加错词记录
@@ -27,4 +28,11 @@ public interface TTranslationRecordsDao {
      * @return 受影响的行数
      */
     int updateTranslate(TTranslationRecords tTranslationRecords);
+
+    /**
+     * 删除错题记录
+     * @param id 删除id
+     * @return 受影响的行数
+     */
+    int deleteTranslate(Integer id);
 }
