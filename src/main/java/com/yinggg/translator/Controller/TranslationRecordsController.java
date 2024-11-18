@@ -19,7 +19,7 @@ public class TranslationRecordsController {
     TTranslationRecordsServiceImpl tTranslationRecordsService;
 
     /*=================================== search方法开始 ===================================*/
-    
+
     @PostMapping("/history/search")
     public Result search(@RequestBody SearchRequest searchRequest) {
         int page = searchRequest.getPage();
