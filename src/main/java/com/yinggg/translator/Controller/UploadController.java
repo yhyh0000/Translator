@@ -20,7 +20,7 @@ public class UploadController {
     public UploadController() {
     }
 
-    @PostMapping("uploadFile")
+    @PostMapping("/uploadFile")
     public Result upload(@RequestParam("file") MultipartFile file,
                          @RequestParam("userId") String userId) throws IOException {
         TUser tuser = new TUser();
