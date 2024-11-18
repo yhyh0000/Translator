@@ -17,8 +17,8 @@ public class TTranslationRecordsServiceImpl implements TTranslationRecordsServic
     TTranslationRecordsDao tTranslationRecordsDao;
 
     @Override
-    public ArrayList<TTranslationRecords> getHistoryByUserId(Integer userId) {
-        return tTranslationRecordsDao.getHistoryByUserId(userId);
+    public ArrayList<TTranslationRecords> queryHistoryByUserIdOrOrigOrTran(TTranslationRecords tTranslationRecords) {
+        return tTranslationRecordsDao.queryHistoryByUserIdOrOrigOrTran(tTranslationRecords);
     }
 
     /*

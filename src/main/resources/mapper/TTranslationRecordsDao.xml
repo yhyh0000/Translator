@@ -2,12 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yinggg.translator.mapper.TTranslationRecordsDao">
 
-    <!--  查询所有错题记录  -->
-    <select id="getHistoryByUserId" parameterType="integer"
+    <!--  根据用户id 或 原文 或 译文 查询  -->
+    <select id="queryHistoryByUserIdOrOrigOrTran" parameterType="com.yinggg.translator.entity.TTranslationRecords"
             resultType="com.yinggg.translator.entity.TTranslationRecords">
         select *
         from t_translation_records
-        where user_id = #{userId};
+        <where>
+            <!-- 确保userId必须有值 -->
+            and user_id = #{userId}
+
+            <!-- originalText可空 -->
+            <if test="originalText!=null and originalText!=''">
+                and original_text = #{originalText};
+            </if>
+
+            <!-- translatedText可空 -->
+            <if test="translatedText!=null and translatedText!=''">
+                and translated_text = #{translatedText};
+            </if>
+        </where>
     </select>
 
     <!--  添加错题记录  -->
@@ -23,7 +36,7 @@
         update t_translation_records
         set original_text   = #{originalText},
             translated_text = #{translatedText},
-            differences = #{differences}
+            differences     = #{differences}
         where id = #{id}
     </update>
 </mapper>

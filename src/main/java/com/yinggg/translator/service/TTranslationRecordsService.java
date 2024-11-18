@@ -5,7 +5,7 @@ import com.yinggg.translator.entity.TTranslationRecords;
 import java.util.ArrayList;
 
 public interface TTranslationRecordsService {
-    ArrayList<TTranslationRecords> getHistoryByUserId(Integer userId);
+    ArrayList<TTranslationRecords> queryHistoryByUserIdOrOrigOrTran(TTranslationRecords tTranslationRecords);
 
     int  addTranslate(TTranslationRecords tTranslationRecords);
 
