@@ -23,7 +23,7 @@ public class UploadController {
     /**
      *
      * 用户上传文件 将文件里的文字识别返回前端由用户确认
-     *
+     *  解析文章
      *
      *
      */
@@ -37,7 +37,7 @@ public class UploadController {
 
     }
     /**
-     * 用户确认后上传数据库
+     * 用户确认后上传数据库 前端请求数据为 id 英文 和 中文
      */
 
 
