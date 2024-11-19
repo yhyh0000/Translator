@@ -20,8 +20,14 @@ public class UploadController {
     private TQuestionBankServiceImpl uploadServiceImpl;
 
 
-
-    @PostMapping("/uploadFile")
+    /**
+     *
+     * 用户上传文件 将文件里的文字识别返回前端由用户确认
+     *
+     *
+     *
+     */
+    @PostMapping("/fetchtext")
     public Result upload(@RequestParam("file") MultipartFile file,
                          @RequestParam("userId") String userId) throws IOException {
         TUser tuser = new TUser();
@@ -30,6 +36,9 @@ public class UploadController {
         return success ? Result.success("上传成功") : Result.error("上传失败");
 
     }
+    /**
+     * 用户确认后上传数据库
+     */
 
 
 }

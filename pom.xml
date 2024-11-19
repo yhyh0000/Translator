@@ -30,8 +30,8 @@
         <!-- Spring Boot Testing Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-com.yinggg.translator.test</artifactId>
-            <scope>com.yinggg.translator.test</scope>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <!-- Springdoc OpenAPI UI for Swagger -->
