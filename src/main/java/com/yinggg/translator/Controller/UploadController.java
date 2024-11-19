@@ -38,6 +38,7 @@ public class UploadController {
     }
     /**
      * 用户确认后上传数据库 前端请求数据为 id 英文 和 中文
+     * 请求路径/uploadText
      */
 
 
