@@ -1,19 +1,22 @@
 package com.yinggg.translator.Config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**") //允许跨域访问的路径
-                .allowedOrigins("*") //允许跨域访问的源
-                .allowedMethods("POST","GET","PUT","OPTIONS","DELETE") //允许请求方法
-                .allowedHeaders("*") //允许头部设置
-                .maxAge(168000) //预检间隔时间
-                .allowCredentials(false); // 是否发送 cookie
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
+                .allowedHeaders("Content-Type", "Authorization", "token", "*")
+                .maxAge(168000)
+                .allowCredentials(false);
+
     }
 }
 

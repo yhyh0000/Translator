@@ -28,9 +28,12 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
             return true;
         }
 
+        //打印请求头的内容
+        log.info("请求头数据: {}",req.getHeader("Authorization"));
+
         //3.获取请求头中的令牌（token）。
         String jwt = req.getHeader("token");
-
+        log.info(jwt);
         //4.判断令牌是否存在，如果不存在，返回错误结果（未登录）。
         if(!StringUtils.hasLength(jwt)){
             log.info("请求头token为空,返回未登录的信息");
