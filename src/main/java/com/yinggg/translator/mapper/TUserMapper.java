@@ -3,7 +3,6 @@ package com.yinggg.translator.mapper;
 import com.yinggg.translator.entity.TUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 //import org.springframework.data.domain.Pageable;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
  * @since 2024-11-13 13:33:40
  */
 @Mapper
-public interface TUserDao {
+public interface TUserMapper {
 
     /**
      * 通过ID查询单条数据

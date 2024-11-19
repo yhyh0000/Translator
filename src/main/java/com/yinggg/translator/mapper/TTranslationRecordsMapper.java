@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.ArrayList;
 
 @Mapper
-public interface TTranslationRecordsDao {
+public interface TTranslationRecordsMapper {
 
     /**
      * 查询所有错题记录

@@ -1,7 +1,7 @@
 package com.yinggg.translator.service.impl;
 
 import com.yinggg.translator.entity.TUser;
-import com.yinggg.translator.mapper.TUserDao;
+import com.yinggg.translator.mapper.TUserMapper;
 import com.yinggg.translator.service.TUserService;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ import javax.annotation.Resource;
 @Service("tUserService")
 public class TUserServiceImpl implements TUserService {
     @Resource
-    private TUserDao tUserDao;
+    private TUserMapper tUserMapper;
 
     /**
      * 通过ID查询单条数据
@@ -31,7 +31,7 @@ public class TUserServiceImpl implements TUserService {
      */
     @Override
     public TUser queryById(Integer id) {
-        return this.tUserDao.queryById(id);
+        return this.tUserMapper.queryById(id);
     }
 
     /**
@@ -55,7 +55,7 @@ public class TUserServiceImpl implements TUserService {
      */
     @Override
     public TUser insert(TUser tUser) {
-        this.tUserDao.insert(tUser);
+        this.tUserMapper.insert(tUser);
         return tUser;
     }
 
@@ -67,7 +67,7 @@ public class TUserServiceImpl implements TUserService {
      */
     @Override
     public TUser update(TUser tUser) {
-        this.tUserDao.update(tUser);
+        this.tUserMapper.update(tUser);
         return this.queryById(tUser.getId());
     }
 
@@ -79,11 +79,11 @@ public class TUserServiceImpl implements TUserService {
      */
     @Override
     public boolean deleteById(Integer id) {
-        return this.tUserDao.deleteById(id) > 0;
+        return this.tUserMapper.deleteById(id) > 0;
     }
 
     @Override
     public TUser login(TUser tuser) {
-        return tUserDao.login(tuser);
+        return tUserMapper.login(tuser);
     }
 }
