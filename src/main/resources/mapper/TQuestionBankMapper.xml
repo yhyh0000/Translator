@@ -2,9 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yinggg.translator.mapper.TQuestionBankMapper">
 
+    <!--  指定搜索某篇文章  -->
+    <select id="getArticleByBelong" parameterType="string" resultType="com.yinggg.translator.entity.TQuestionBank">
+        select * from t_question_bank where belong=#{belong}
+    </select>
 
-    <!--  添加错题记录  -->
-    <insert id="Upload" parameterType="com.yinggg.translator.entity.TQuestionBank" keyProperty="id"
+
+    <!--  添加文章记录  -->
+    <insert id="addQuestion" parameterType="com.yinggg.translator.entity.TQuestionBank" keyProperty="id"
             useGeneratedKeys="true">
         INSERT INTO t_question_bank
         VALUES (default, #{sourceText}, #{targetText}, #{userId}, now())

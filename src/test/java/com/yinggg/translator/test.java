@@ -1,18 +1,14 @@
 package com.yinggg.translator;
 
-import com.yinggg.translator.service.impl.UploadServiceImpl;
-import com.yinggg.translator.utils.FileUtils;
+import com.yinggg.translator.service.impl.TQuestionBankServiceImpl;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
 
 public class test {
 
 
-    UploadServiceImpl uploadService = new UploadServiceImpl();
+    TQuestionBankServiceImpl uploadService = new TQuestionBankServiceImpl();
 
     @Test
     void testDocumentProcessing() {

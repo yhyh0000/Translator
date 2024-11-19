@@ -39,7 +39,7 @@ public class FileUtils {
             XWPFParagraph paragraph = (XWPFParagraph) var4.next();
             content.append(paragraph.getText()).append("\n");
         }
-
+        inputStream.close();
         return processDocument(content.toString());
     }
 
@@ -53,7 +53,6 @@ public class FileUtils {
 
         String content = new String(inputStream.readAllBytes(), "UTF-8");
         inputStream.close();
-//        List<String[]> strings = processDocument(content);
         return processDocument(content);
 
     }
@@ -67,10 +66,6 @@ public class FileUtils {
     public List<String[]> processDocument(String content) throws IOException {
         List<String[]> result = new ArrayList<>();
 
-        // 使用FileInputStream读取文件
-//        FileInputStream fis = new FileInputStream(new File(filePath));
-//        String content = IOUtils.toString(fis, Charset.forName("UTF-8"));
-//        fis.close();
 
         // 处理换行及按照分隔符分割内容
         String[] contentSplit = content.split("(翻译：|翻译:)");
