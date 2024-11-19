@@ -7,15 +7,14 @@ import com.yinggg.translator.service.TUserService;
 import com.yinggg.translator.utils.JwtUtils;
 import com.yinggg.translator.utils.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
+@CrossOrigin
 @RestController
 public class UserController {
     @Resource
@@ -33,7 +32,7 @@ public class UserController {
             Map<String, Object> claims = new HashMap<>();
             claims.put("id", user.getId());
             claims.put("account", user.getUsername());
-            claims.put("password", user.getPassword());
+
             String jwt = JwtUtils.generateJwt(claims); //jwt包含了当前登录的信息
             return Result.success(jwt);
         } else {

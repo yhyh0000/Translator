@@ -9,5 +9,5 @@ import java.io.IOException;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface UploadService {
-    Boolean upload(MultipartFile var1, Integer var2) throws IOException;
+    String upload(MultipartFile var1) throws IOException;
 }

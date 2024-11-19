@@ -23,15 +23,17 @@ public class UploadServiceImpl implements UploadService {
     public UploadServiceImpl() {
     }
 
-    public Boolean upload(MultipartFile file, Integer id) throws IOException {
-        log.info(String.valueOf(id));
+    public String upload(MultipartFile file) throws IOException {
+        log.info("开始解析文件");
+        String  error = "未上传或文件格式不支持";
+
         if (file == null || file.isEmpty()) {
-            return false;
+            return error;
         }
 
         String fileName = file.getOriginalFilename();
         if (fileName == null) {
-            return false;
+            return error;
         }
 
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
@@ -46,17 +48,14 @@ public class UploadServiceImpl implements UploadService {
             }else {
                 originalText = this.fileUtils.WordToText(file.getInputStream());
             }
-
             log.info(originalText);
-
             if (originalText == null) {
-                return false;
+                return error;
             } else {
-                this.uploadMapper.Upload(originalText, id);
-                return true;
+                return originalText;
             }
         } else {
-            return false;
+            return error;
         }
     }
 }
