@@ -2,7 +2,7 @@ package com.yinggg.translator.service.impl;
 
 import com.yinggg.translator.entity.SearchRequest;
 import com.yinggg.translator.entity.TTranslationRecords;
-import com.yinggg.translator.mapper.TTranslationRecordsDao;
+import com.yinggg.translator.mapper.TTranslationRecordsMapper;
 import com.yinggg.translator.service.TTranslationRecordsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import static com.yinggg.translator.utils.AdvancedDatabaseFormatValidatorUtils.v
 @Service
 public class TTranslationRecordsServiceImpl implements TTranslationRecordsService {
     @Autowired
-    TTranslationRecordsDao tTranslationRecordsDao;
+    TTranslationRecordsMapper tTranslationRecordsMapper;
     /*=================================== queryHistoryByUserIdOrOrigOrTran方法开始 ===================================*/
     @Override
     public ArrayList<TTranslationRecords> queryHistoryByUserIdOrOrigOrTran(SearchRequest searchRequest) {
@@ -31,7 +31,7 @@ public class TTranslationRecordsServiceImpl implements TTranslationRecordsServic
 
         // 直接根据页码和每页记录数计算偏移量
         searchRequest.setPage((page - 1) * size);
-        ArrayList<TTranslationRecords> tTranslationRecords = tTranslationRecordsDao.queryHistoryByUserIdOrOrigOrTran(searchRequest);
+        ArrayList<TTranslationRecords> tTranslationRecords = tTranslationRecordsMapper.queryHistoryByUserIdOrOrigOrTran(searchRequest);
         if (tTranslationRecords.isEmpty()) {
             return new ArrayList<>();
         }
@@ -46,7 +46,7 @@ public class TTranslationRecordsServiceImpl implements TTranslationRecordsServic
             return 0;
         }
 
-        return tTranslationRecordsDao.addTranslate(tTranslationRecords);
+        return tTranslationRecordsMapper.addTranslate(tTranslationRecords);
 
     }
     /*=================================== addTranslate方法结束 ===================================*/
@@ -58,7 +58,7 @@ public class TTranslationRecordsServiceImpl implements TTranslationRecordsServic
         if (!validateDatabaseFormat(tTranslationRecords)) {
             return 0;
         }
-        return tTranslationRecordsDao.updateTranslate(tTranslationRecords);
+        return tTranslationRecordsMapper.updateTranslate(tTranslationRecords);
     }
     /*=================================== updateTranslate 方法结束 ===================================*/
 
@@ -68,7 +68,7 @@ public class TTranslationRecordsServiceImpl implements TTranslationRecordsServic
         if (id == null) {
             return 0;
         }
-        return tTranslationRecordsDao.deleteTranslate(id);
+        return tTranslationRecordsMapper.deleteTranslate(id);
     }
     /*=================================== deleteTranslate 方法结束 ===================================*/
 }

@@ -1,8 +1,57 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <title>主页</title>
+    <meta charset="UTF-8">
+    <title>文件上传页面（Fetch API）</title>
 </head>
+
 <body>
-<h1>欢迎页面</h1>
+<h2>文件上传（Fetch API）</h2>
+<input type="file" id="fileInput" />
+<input type="text" id="userIdInput" placeholder="输入用户ID" />
+<button id="uploadButton">上传文件</button>
+
+<script>
+    const uploadButton = document.getElementById('uploadButton');
+    const fileInput = document.getElementById('fileInput');
+    const userIdInput = document.getElementById('userIdInput');
+
+    uploadButton.addEventListener('click', async () => {
+        const file = fileInput.files[0];
+        const userId = userIdInput.value;
+
+        if (!file) {
+            alert('请选择要上传的文件');
+            return;
+        }
+
+        if (!userId) {
+            alert('请输入用户ID');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('userId', userId);
+
+        try {
+            const response = await fetch('http://localhost:8081/uploadFile', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+            // if (result.success.data) {
+            //     alert('上传成功');
+            // } else {
+            //     alert('上传失败：' + result.message);
+            // }
+        } catch (error) {
+            alert('请求出错：' + error.message);
+        }
+    });
+</script>
 </body>
+
 </html>

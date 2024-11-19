@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+/**
+ * apiKey 申请地址 https://cloud.baidu.com/
+ */
 @Service
 public class QFanApiUtil {
 
