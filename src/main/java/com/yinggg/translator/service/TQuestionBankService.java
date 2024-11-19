@@ -12,6 +12,6 @@ import com.yinggg.translator.entity.TQuestionBank;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface TQuestionBankService {
-    Boolean upload(MultipartFile var1, Integer var2) throws IOException;
+    ArrayList<String[]> upload(MultipartFile var1, Integer var2) throws IOException;
     ArrayList<TQuestionBank> getArticleByBelong(String belong,String userId);
 }

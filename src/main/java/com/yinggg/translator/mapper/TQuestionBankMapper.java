@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public interface TQuestionBankMapper {
 
 //    @Insert("INSERT INTO t_question_bank VALUES (default,#{sourceText},#{targetText},#{userId},now()))")
-    void addQuestion(TQuestionBank tQuestionBank);
+   int addQuestion(TQuestionBank tQuestionBank);
 
     ArrayList<TQuestionBank> getArticleByBelong(@Param("belong")String belong,
                                                 @Param("userId")String userId);

@@ -6,6 +6,8 @@ import com.yinggg.translator.service.impl.TQuestionBankServiceImpl;
 import com.yinggg.translator.utils.Result;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Resource;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,8 +34,11 @@ public class UploadController {
                          @RequestParam("userId") String userId) throws IOException {
         TUser tuser = new TUser();
         tuser.setId(Integer.valueOf(userId));
-        boolean success = this.uploadServiceImpl.upload(file, tuser.getId());
-        return success ? Result.success("上传成功") : Result.error("上传失败");
+        List<String[]> data = this.uploadServiceImpl.upload(file, tuser.getId());
+        if (data.isEmpty()) {
+            Result.error("上传失败");
+        }
+        return  Result.success(data);
 
     }
     /**

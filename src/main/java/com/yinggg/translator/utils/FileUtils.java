@@ -30,7 +30,7 @@ public class FileUtils {
      * @return 返回中英两个数组列表
      * @throws IOException
      */
-    public List<String[]> WordToText(InputStream inputStream) throws IOException {
+    public ArrayList<String[]> WordToText(InputStream inputStream) throws IOException {
         XWPFDocument document = new XWPFDocument(inputStream);
         StringBuilder content = new StringBuilder();
         Iterator var4 = document.getParagraphs().iterator();
@@ -49,7 +49,7 @@ public class FileUtils {
      * @return 返回中英两个数组列表
      * @throws IOException
      */
-    public List<String[]> TXTToText(InputStream inputStream) throws IOException {
+    public ArrayList<String[]> TXTToText(InputStream inputStream) throws IOException {
 
         String content = new String(inputStream.readAllBytes(), "UTF-8");
         inputStream.close();
@@ -63,8 +63,8 @@ public class FileUtils {
      * @return 返回中英两个数组列表
      * @throws IOException
      */
-    public List<String[]> processDocument(String content) throws IOException {
-        List<String[]> result = new ArrayList<>();
+    public ArrayList<String[]> processDocument(String content) throws IOException {
+        ArrayList<String[]> result = new ArrayList<>();
 
 
         // 处理换行及按照分隔符分割内容
