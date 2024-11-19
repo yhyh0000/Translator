@@ -3,8 +3,10 @@
 <mapper namespace="com.yinggg.translator.mapper.TQuestionBankMapper">
 
     <!--  指定搜索某篇文章  -->
-    <select id="getArticleByBelong" parameterType="string" resultType="com.yinggg.translator.entity.TQuestionBank">
-        select * from t_question_bank where belong=#{belong}
+    <select id="getArticleByBelong"  resultType="com.yinggg.translator.entity.TQuestionBank">
+        select * from t_question_bank
+        where belong like concat("%",#{belong},"%")
+          and user_id = #{userId};
     </select>
 
 
@@ -12,7 +14,7 @@
     <insert id="addQuestion" parameterType="com.yinggg.translator.entity.TQuestionBank" keyProperty="id"
             useGeneratedKeys="true">
         INSERT INTO t_question_bank
-        VALUES (default, #{sourceText}, #{targetText}, #{userId}, now())
+        VALUES (default, #{sourceText}, #{targetText}, #{userId}, now(),#{belong})
     </insert>
 
 

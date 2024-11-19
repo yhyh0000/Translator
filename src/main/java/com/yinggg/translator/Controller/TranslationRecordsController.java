@@ -1,5 +1,6 @@
 package com.yinggg.translator.Controller;
 
+import cn.hutool.core.util.ArrayUtil;
 import com.yinggg.translator.entity.SearchRequest;
 import com.yinggg.translator.entity.TTranslationRecords;
 import com.yinggg.translator.service.impl.TTranslationRecordsServiceImpl;
@@ -41,8 +42,9 @@ public class TranslationRecordsController {
 
         try {
             ArrayList<TTranslationRecords> result = tTranslationRecordsService.queryHistoryByUserIdOrOrigOrTran(searchRequest);
+            System.out.println(ArrayUtil.toString(result));
             if (result.isEmpty()) {
-                return Result.error("搜索失败");
+                return Result.error("没搜索到相应记录");
             }
             return Result.success(result);
         } catch (Exception e) {

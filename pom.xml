@@ -28,11 +28,11 @@
         </dependency>
 
         <!-- Spring Boot Testing Starter -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-com.yinggg.translator.test</artifactId>
-            <scope>com.yinggg.translator.test</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-com.yinggg.translator.test</artifactId>-->
+<!--            <scope>com.yinggg.translator.test</scope>-->
+<!--        </dependency>-->
 
         <!-- Springdoc OpenAPI UI for Swagger -->
         <dependency>

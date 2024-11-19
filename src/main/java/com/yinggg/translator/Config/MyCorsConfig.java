@@ -18,11 +18,11 @@ public class MyCorsConfig {
         return corsConfiguration;
     }
 
-    @Bean
-    public CorsFilter corsFilter() {
-        //存储request与跨域配置信息的容器，基于url的映射
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfig());
-        return new CorsFilter(source);
-    }
+//    @Bean
+//    public CorsFilter corsFilter() {
+//        //存储request与跨域配置信息的容器，基于url的映射
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", corsConfig());
+//        return new CorsFilter(source);
+//    }
 }

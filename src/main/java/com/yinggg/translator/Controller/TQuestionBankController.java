@@ -16,10 +16,15 @@ public class TQuestionBankController {
     @Autowired
     TQuestionBankServiceImpl tQuestionBankService;
     @GetMapping("/getArticleByBelong")
-    public Result getArticleByBelong(@RequestParam("belong") String belong){
-        ArrayList<TQuestionBank> articleByBelong = tQuestionBankService.getArticleByBelong(belong);
+    public Result getArticleByBelong(@RequestParam("belong") String belong,
+                                     @RequestParam("userId") String userId){
+
+        if(belong.isEmpty() || userId.isEmpty()){
+            return Result.error("参数错误");
+        }
+        ArrayList<TQuestionBank> articleByBelong = tQuestionBankService.getArticleByBelong(belong,userId);
         if (articleByBelong.isEmpty()) {
-           return Result.error("获取失败");
+           return Result.error("没查询到相应数据");
         }
         return Result.success(articleByBelong);
     }

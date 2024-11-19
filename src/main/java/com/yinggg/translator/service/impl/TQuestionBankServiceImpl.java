@@ -28,8 +28,8 @@ public class TQuestionBankServiceImpl implements TQuestionBankService {
 
 
     /*=================================== upload方法开始 ===================================*/
-    public Boolean upload(MultipartFile file, Integer id) throws IOException {
-        log.info(String.valueOf(id));
+    public Boolean upload(MultipartFile file, Integer userId) throws IOException {
+        log.info(String.valueOf(userId));
         //判断文件不为空
         if (file == null || file.isEmpty()) {
             return false;
@@ -43,7 +43,7 @@ public class TQuestionBankServiceImpl implements TQuestionBankService {
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         List<String[]> originalText = null;
         //判断数据是否时 txt doc docx
-        if (!(suffixName.equals(".txt") || suffixName.equals(".doc")|| suffixName.equals(".docx"))) {
+        if (!(suffixName.equals(".txt") || suffixName.equals(".doc") || suffixName.equals(".docx"))) {
             return false;
         }
         //工具类不为空
@@ -67,16 +67,24 @@ public class TQuestionBankServiceImpl implements TQuestionBankService {
         String[] chineseTranslations = originalText.get(1);
 
         // 原文和翻译长度不一致
-        if(!(englishSentences.length == chineseTranslations.length)){
+        if (!(englishSentences.length == chineseTranslations.length)) {
             return false;
         }
 
         // 将英文句子和对应的中文翻译组合成数组添加到结果列表
+        System.out.println("添加数据中...");
+        System.out.println("文件名称:" + fileName);
         for (int i = 0; i < englishSentences.length; i++) {
             // 创建TQuestionBank对象并上传数据到数据库，添加异常处理
             try {
-                TQuestionBank tQuestionBank = new TQuestionBank(0, englishSentences[i], chineseTranslations[i], 1, "",fileName);
+                System.out.println("==========================正在添加=======================");
+                System.out.println("原文:" + englishSentences[i]);
+                System.out.println("翻译:" + chineseTranslations[i]);
+                TQuestionBank tQuestionBank = new TQuestionBank(0, englishSentences[i],
+                        chineseTranslations[i], userId,
+                        "", fileName);
                 TQuestionBankMapper.addQuestion(tQuestionBank);
+                System.out.println("添加成功");
             } catch (Exception e) {
                 // 处理数据库操作异常，比如输出错误提示信息、记录日志等
                 System.out.println("上传数据到数据库时出现异常：" + e.getMessage());
@@ -90,11 +98,9 @@ public class TQuestionBankServiceImpl implements TQuestionBankService {
     /*=================================== getArticleByBelong 方法开始 ===================================*/
 
     @Override
-    public ArrayList<TQuestionBank> getArticleByBelong(String belong) {
-        if(belong.isEmpty()){
-            return new ArrayList<>();
-        }
-        return TQuestionBankMapper.getArticleByBelong(belong);
+    public ArrayList<TQuestionBank> getArticleByBelong(String belong, String userId) {
+
+        return TQuestionBankMapper.getArticleByBelong(belong, userId);
     }
     /*=================================== getArticleByBelong 方法结束 ===================================*/
 }
