@@ -1,12 +1,13 @@
 
 package com.yinggg.translator.Controller;
 
+import com.yinggg.translator.entity.TQuestionBank;
 import com.yinggg.translator.entity.TUser;
+import com.yinggg.translator.service.TQuestionBankService;
 import com.yinggg.translator.service.impl.TQuestionBankServiceImpl;
 import com.yinggg.translator.utils.Result;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 
@@ -45,6 +46,13 @@ public class UploadController {
      * 用户确认后上传数据库 前端请求数据为 id 英文 和 中文
      * 请求路径/uploadText
      */
+
+    @PostMapping("/uploadText")
+    public Result uploadText(@RequestBody TQuestionBank tUsers) {
+        log.info("接收到的数据为：{}", tUsers);
+        boolean success =  uploadServiceImpl.addQustion(tUsers);
+        return Result.success();
+    }
 
 
 }

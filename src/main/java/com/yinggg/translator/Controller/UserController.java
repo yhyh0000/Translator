@@ -39,6 +39,16 @@ public class UserController {
             return Result.error("登录失败");
         }
     }
+
+    @PostMapping("/register")
+    public Result register(@RequestBody TUser user) {
+        Preconditions.checkNotNull(user.getUsername(), "账号不能为空");
+        Preconditions.checkNotNull(user.getPassword(), "密码不能为空");
+        log.info(JSON.toJSONString(user));
+        boolean success =  tUserService.register(user);
+
+         return success ? Result.success() : Result.error("账号已注册");
+    }
 }
 
 

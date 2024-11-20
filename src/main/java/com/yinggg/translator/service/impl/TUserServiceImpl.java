@@ -6,6 +6,7 @@ import com.yinggg.translator.service.TUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 //import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.PageImpl;
 //import org.springframework.data.domain.PageRequest;
@@ -85,5 +86,17 @@ public class TUserServiceImpl implements TUserService {
     @Override
     public TUser login(TUser tuser) {
         return tUserMapper.login(tuser);
+    }
+
+    @Override
+    public boolean register(TUser user) {
+        List<TUser> result  = tUserMapper.queryByName(user.getUsername());
+        if (!result.isEmpty()) {
+            // 如果查到了记录，且数量大于0（这里假设查询返回数量代表匹配记录数量）
+            return false;
+        }
+// 没查到相等记录或者 result 为 null 的情况，继续后续插入逻辑等
+        tUserMapper.insert(user);
+        return true;
     }
 }

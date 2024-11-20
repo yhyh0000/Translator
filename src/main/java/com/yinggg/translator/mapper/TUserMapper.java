@@ -82,5 +82,7 @@ public interface TUserMapper {
     int deleteById(Integer id);
 
    TUser login(TUser tuser);
+
+   List<TUser>  queryByName(String name);
 }
 

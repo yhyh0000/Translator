@@ -54,4 +54,6 @@ public interface TUserService {
     boolean deleteById(Integer id);
 
    TUser login(TUser tuser);
+
+    boolean register(TUser user);
 }
