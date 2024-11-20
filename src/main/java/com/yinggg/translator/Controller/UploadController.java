@@ -34,17 +34,19 @@ public class UploadController {
                          @RequestParam("userId") String userId) throws IOException {
         TUser tuser = new TUser();
         tuser.setId(Integer.valueOf(userId));
-        List<String[]> data = this.uploadServiceImpl.upload(file, tuser.getId());
+        List<String[]> data = null;
+        try {
+            data = this.uploadServiceImpl.upload(file, tuser.getId());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         if (data.isEmpty()) {
             Result.error("上传失败");
         }
         return  Result.success(data);
 
     }
-    /**
-     * 用户确认后上传数据库 前端请求数据为 id 英文 和 中文
-     * 请求路径/uploadText
-     */
+
 
 
 }

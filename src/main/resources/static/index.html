@@ -42,16 +42,18 @@
             });
 
             const result = await response.json();
-            console.log(result)
-            // if (result.success.data) {
-            //     alert('上传成功');
-            // } else {
-            //     alert('上传失败：' + result.message);
-            // }
+            
+            if (result.code ===1) {
+                alert('上传成功');
+                console.log(result.data)
+            } else {
+                alert('上传失败：' + result.message);
+            }
         } catch (error) {
             alert('请求出错：' + error.message);
         }
     });
+    console.log("English Array:\n1. In my life, I have met many people who are really worth my recalling.\n2. The most unforgettable person I ever knew is my Chinese language teacher.\n3. What frequently brings back memories of my school teacher is his special qualities.\n4. First of all, I was attracted by his lively wit.\n5. We always long for his class with great eagerness because his lectures were humorously delivered, never failing to provoke loud laughs.\n6. Second, he gave us the greatest gift a teacher can offer—an awakening of a passion for learning.\n7. He not only led us to an appreciation of the beauty and perfection of Chinese and literature, but also aroused our great interest in exploring something deeper in this field.\n8. Finally, I was deeply impressed by the respect he showed for us, for he treated us like friends rather than students.\n9. Although it is nearly 10 years since I attended his last class, he is the talk of our old classmates, and I know part of him has already stayed in my heart.\n\nChinese Array:\n1. 在我的一生中，我遇到了许多真正值得我回忆的人。\n2. 我认识的最难忘的人是我的语文老师。\n3. 经常让我想起学校老师的是他的特殊品质。\n4. 首先，我被他活泼的才智所吸引。\n5. 我们总是很期待他的课，因为他的演讲很幽默，总是能引起大家的注意笑声。\n6. 其次，他给了我们一位老师所能提供的最好的礼物——激情的觉醒，为了学习。\n7. 他不仅让我们领略了中国文学的美丽和完美，也引起了我们对探索这一领域更深层次的东西的极大兴趣。\n8. 最后，他对我们的尊重给我留下了深刻的印象，因为他把我们当作朋友对待，而不是学生。\n9. 虽然我上他最后一节课已经快10年了，但他是我们老同学的谈资，我知道他的一部分已经留在了我的心里。")
 </script>
 </body>
 

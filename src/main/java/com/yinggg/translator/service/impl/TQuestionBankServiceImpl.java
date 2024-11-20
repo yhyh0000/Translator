@@ -28,7 +28,7 @@ public class TQuestionBankServiceImpl implements TQuestionBankService {
 
 
     /*=================================== upload方法开始 ===================================*/
-    public ArrayList<String[]> upload(MultipartFile file, Integer userId) throws IOException {
+    public ArrayList<String[]> upload(MultipartFile file, Integer userId) throws Exception {
         ArrayList<String[]> originalText = null;
         log.info(String.valueOf(userId));
         //判断文件不为空
