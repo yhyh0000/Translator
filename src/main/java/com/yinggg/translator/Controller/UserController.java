@@ -46,7 +46,6 @@ public class UserController {
         Preconditions.checkNotNull(user.getPassword(), "密码不能为空");
         log.info(JSON.toJSONString(user));
         boolean success =  tUserService.register(user);
-
          return success ? Result.success() : Result.error("账号已注册");
     }
 }
