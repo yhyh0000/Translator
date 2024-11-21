@@ -22,6 +22,11 @@
         from t_user
         where id = #{id}
     </select>
+    <select id="queryByName" resultMap="TUserMap">
+        select *
+        from t_user
+        where username = #{username}
+    </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="TUserMap">

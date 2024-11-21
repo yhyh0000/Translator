@@ -2,9 +2,11 @@ package com.yinggg.translator.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 /**
  *    id; 句子唯一标识
  *    sourceText; 源语言句子
@@ -16,9 +18,18 @@ import lombok.Data;
 public class TQuestionBank {
     private int id;
     private String sourceText;
+
+    public TQuestionBank(String sourceText, String targetText, int userId, String belong) {
+        this.sourceText = sourceText;
+        this.targetText = targetText;
+        this.userId = userId;
+        this.belong = belong;
+    }
+
     private String targetText;
     private int userId;
     private String uploadTime;
     private String belong;
 
 }
+

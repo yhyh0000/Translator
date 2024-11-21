@@ -2,6 +2,7 @@
 package com.yinggg.translator.service.impl;
 
 import com.yinggg.translator.entity.TQuestionBank;
+import com.yinggg.translator.entity.TUser;
 import com.yinggg.translator.mapper.TQuestionBankMapper;
 import com.yinggg.translator.service.TQuestionBankService;
 import com.yinggg.translator.utils.FileUtils;
@@ -102,6 +103,21 @@ public class TQuestionBankServiceImpl implements TQuestionBankService {
     public ArrayList<TQuestionBank> getArticleByBelong(String belong, String userId) {
 
         return TQuestionBankMapper.getArticleByBelong(belong, userId);
+    }
+
+    @Override
+    public  boolean addQustion(TQuestionBank tUsers) {
+        try{
+         int success =  TQuestionBankMapper.addQuestion(tUsers);
+       if(success>0){
+           return true;
+       }
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return false ;
+
+        }
+        return false;
     }
     /*=================================== getArticleByBelong 方法结束 ===================================*/
 }
