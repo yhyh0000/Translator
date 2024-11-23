@@ -3,6 +3,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
 import com.alibaba.fastjson.JSON;
+import com.aliyuncs.exceptions.ClientException;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.google.common.base.Preconditions;
 import com.yinggg.translator.entity.TUser;
@@ -10,6 +11,7 @@ import com.yinggg.translator.service.TUserService;
 import com.yinggg.translator.utils.JwtUtils;
 import com.yinggg.translator.utils.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
@@ -81,6 +83,17 @@ public class UserController {
         resultMap.put("captchaCode", captchaCode);
         // 返回包含验证码相关信息的响应实体，状态码设置为200表示成功
         return Result.success(resultMap);
+    }
+
+    /**
+     * 手机登录生成验证码
+     * @return
+     */
+    @PostMapping("/smsLogin")
+    public Result smsLogin(String tel) throws ClientException {
+        String code = tUserService.SMSLogin(tel);
+        redisTemplate.opsForHash().put("code",tel,code);
+        return Result.success(code);
     }
 
 

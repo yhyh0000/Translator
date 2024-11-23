@@ -1,8 +1,12 @@
 package com.yinggg.translator.service.impl;
 
+import com.aliyuncs.exceptions.ClientException;
 import com.yinggg.translator.entity.TUser;
 import com.yinggg.translator.mapper.TUserMapper;
 import com.yinggg.translator.service.TUserService;
+import com.yinggg.translator.utils.AliyunSMS;
+import com.yinggg.translator.utils.GenerateCode;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,6 +27,7 @@ import java.util.List;
 public class TUserServiceImpl implements TUserService {
     @Resource
     private TUserMapper tUserMapper;
+    private AliyunSMS aliyunSMS;
 
     /**
      * 通过ID查询单条数据
@@ -99,5 +104,13 @@ public class TUserServiceImpl implements TUserService {
             // 没查到相等记录或者 result 为 null 的情况，继续后续插入逻辑等
         tUserMapper.insert(user);
         return true;
+    }
+
+    @Override
+    public String SMSLogin(String tel) throws ClientException {
+           String code = GenerateCode.generateVerifyCode(6);
+//            AliyunSMS.sendSms(tel, code);
+            return code;
+
     }
 }
