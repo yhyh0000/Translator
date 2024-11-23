@@ -18,6 +18,7 @@ public class TUser implements Serializable {
     /**
      * 用户账户
      */
+
     private String username;
     /**
      * 用户密码
