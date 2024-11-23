@@ -47,7 +47,7 @@ public class FileUtils {
     }
 
     /**
-     *  处理文本文件
+     * 处理文本文件
      * @param inputStream
      * @return 返回中英两个数组列表
      * @throws IOException
@@ -65,6 +65,8 @@ public class FileUtils {
      * @param content
      * @return 返回中英两个数组列表
      * @throws IOException
+     * 暂时不能处理 原文和译文交替出现的情况，
+     * 这种情况暂时可以用 QFan 大模型进行处理
      */
     public ArrayList<String[]> processDocument(String content) throws Exception {
         ArrayList<String[]> result = new ArrayList<>();
