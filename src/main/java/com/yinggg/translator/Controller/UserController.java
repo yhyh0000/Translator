@@ -66,7 +66,6 @@ public class UserController {
 
     /**
      * 生成6位字母和数字组成的验证码
-     *
      */
     @GetMapping("/generateCaptcha")
     public Result generateCaptcha(HttpServletResponse response) throws IOException {
@@ -89,7 +88,7 @@ public class UserController {
      * 手机登录生成验证码
      * @return
      */
-    @PostMapping("/smsLogin")
+    @PostMapping("/smsCode")
     public Result smsLogin(String tel) throws ClientException {
         String code = tUserService.SMSLogin(tel);
         redisTemplate.opsForHash().put("code",tel,code);
