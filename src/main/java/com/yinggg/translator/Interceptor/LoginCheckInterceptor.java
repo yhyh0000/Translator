@@ -27,7 +27,6 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
             log.info("登录操作, 放行...");
             return true;
         }
-
         //打印请求头的内容
         log.info("请求头数据: {}",req.getHeader("Authorization"));
 

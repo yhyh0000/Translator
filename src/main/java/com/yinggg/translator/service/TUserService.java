@@ -1,5 +1,7 @@
 package com.yinggg.translator.service;
 
+import com.aliyuncs.exceptions.ClientException;
+import com.yinggg.translator.entity.LoginDTO;
 import com.yinggg.translator.entity.TUser;
 //import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.PageRequest;
@@ -53,7 +55,9 @@ public interface TUserService {
      */
     boolean deleteById(Integer id);
 
-   TUser login(TUser tuser);
+   TUser login(LoginDTO tuser) throws Exception;
 
-    boolean register(TUser user);
+    boolean register(LoginDTO loginDTO) throws Exception;
+
+    String SMSLogin(String tel) throws ClientException;
 }

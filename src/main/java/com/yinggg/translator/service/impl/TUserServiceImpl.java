@@ -1,15 +1,21 @@
 package com.yinggg.translator.service.impl;
 
+import com.aliyuncs.exceptions.ClientException;
+import com.yinggg.translator.entity.LoginDTO;
 import com.yinggg.translator.entity.TUser;
 import com.yinggg.translator.mapper.TUserMapper;
 import com.yinggg.translator.service.TUserService;
+import com.yinggg.translator.utils.AliyunSMS;
+import com.yinggg.translator.utils.GenerateCode;
+import com.yinggg.translator.utils.LoginDTOToTuser;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+
 import java.util.List;
-//import org.springframework.data.domain.Page;
-//import org.springframework.data.domain.PageImpl;
-//import org.springframework.data.domain.PageRequest;
+
 
 
 
@@ -19,10 +25,19 @@ import java.util.List;
  * @author makejava
  * @since 2024-11-13 13:33:40
  */
+@Slf4j
 @Service("tUserService")
 public class TUserServiceImpl implements TUserService {
     @Resource
     private TUserMapper tUserMapper;
+    @Resource
+    private AliyunSMS aliyunSMS;
+
+    @Resource
+    private LoginDTOToTuser loginDTOToTuser;
+
+
+
 
     /**
      * 通过ID查询单条数据
@@ -84,19 +99,29 @@ public class TUserServiceImpl implements TUserService {
     }
 
     @Override
-    public TUser login(TUser tuser) {
-        return tUserMapper.login(tuser);
+    public TUser login(LoginDTO loginDTO) throws Exception {
+       TUser tUser = loginDTOToTuser.convert(loginDTO);
+        return tUserMapper.login(tUser);
     }
 
     @Override
-    public boolean register(TUser user) {
-        List<TUser> result  = tUserMapper.queryByName(user.getUsername());
+    public boolean register(LoginDTO loginDTO) throws Exception {
+        TUser tUser = loginDTOToTuser.convert(loginDTO);
+        List<TUser> result = tUserMapper.queryByName(tUser.getUsername());
         if (!result.isEmpty()) {
-            // 如果查到了记录，且数量大于0（这里假设查询返回数量代表匹配记录数量）
+            // 如果用户名已存在，返回 false
             return false;
         }
-// 没查到相等记录或者 result 为 null 的情况，继续后续插入逻辑等
-        tUserMapper.insert(user);
+        tUserMapper.insert(tUser);
         return true;
+    }
+
+
+    @Override
+    public String SMSLogin(String tel) throws ClientException {
+           String code = GenerateCode.generateVerifyCode(6);
+          log.info("信息结果",AliyunSMS.sendSms(tel, code)); ;
+            return code;
+
     }
 }

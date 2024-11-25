@@ -3,6 +3,7 @@ package com.yinggg.translator.mapper;
 import com.yinggg.translator.entity.TUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 //import org.springframework.data.domain.Pageable;
 import java.util.List;
 
@@ -83,6 +84,8 @@ public interface TUserMapper {
 
    TUser login(TUser tuser);
 
-   List<TUser>  queryByName(String name);
+    @Select("select * from t_user where username = #{username}")
+    List<TUser> queryByName(@Param("username") String username);
+
 }
 
