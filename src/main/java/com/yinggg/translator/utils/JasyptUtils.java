@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 用于配置文件的加密解密
+ * 加密需加ENC(加密后密钥）
  */
 @Component
 public class JasyptUtils {
