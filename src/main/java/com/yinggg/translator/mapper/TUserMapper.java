@@ -87,6 +87,6 @@ public interface TUserMapper {
     @Select("select * from t_user where username = #{username}")
     List<TUser> queryByName(@Param("username") String username);
 
-    void updatePassWord(TUser tUser);
+    Integer updatePassWord(TUser tUser);
 }
 

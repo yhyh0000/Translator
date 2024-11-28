@@ -131,10 +131,9 @@ public class TUserServiceImpl implements TUserService {
         List<TUser> result = tUserMapper.queryByName(tUser.getUsername());
         if (!result.isEmpty()) {
             // 如果用户名已存在，返回 false
-            tUserMapper.updatePassWord(tUser);
-            return true;
-        }
-        return false;
+            return tUserMapper.updatePassWord(tUser) > 0;
+        }return false;
+
 
     }
 }
