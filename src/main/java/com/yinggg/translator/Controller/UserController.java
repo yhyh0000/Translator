@@ -169,6 +169,36 @@ public class UserController {
         boolean success =  tUserService.register(loginDTO);
          return success ? Result.success() : Result.error("账号已注册");
     }
+
+
+    @PostMapping("/updatePassWord")
+    public Result updatePassWord(@RequestBody LoginDTO loginDTO) throws Exception {
+        Preconditions.checkNotNull(loginDTO.getUsername(), "账号不能为空");
+        Preconditions.checkNotNull(loginDTO.getPassword(), "密码不能为空");
+        Preconditions.checkNotNull(loginDTO.getImgcode(), "验证码不能为空");
+        Preconditions.checkNotNull(loginDTO.getUuid(), "UUID不能为空");
+        Preconditions.checkNotNull(loginDTO.getSmsode(), "短信验证码不能为空");
+        log.info(JSON.toJSONString(loginDTO));
+        // 验证图形验证码
+        log.info(JSON.toJSONString(loginDTO));
+        // 验证图形验证码
+        String captchaKey = loginDTO.getUuid();
+        String imgCodeFromFrontend = loginDTO.getImgcode();
+        if (StrUtil.isBlank(captchaKey) || StrUtil.isBlank(imgCodeFromFrontend)) {
+            return Result.error("验证码参数错误");
+        }
+        String imgcode = (String) redisTemplate.opsForHash().get(captchaKey, "code");
+        if (imgcode == null || !imgcode.equals(imgCodeFromFrontend)) {
+            return Result.error("图形验证码错误");
+        }
+        String code = (String) redisTemplate.opsForHash().get("code", loginDTO.getUsername());
+        if (code == null || !code.equals(loginDTO.getSmsode())) {
+            return Result.error("短信验证码错误");
+        }
+
+       boolean success = tUserService.updatePassWord(loginDTO);
+        return null;
+    }
 }
 
 

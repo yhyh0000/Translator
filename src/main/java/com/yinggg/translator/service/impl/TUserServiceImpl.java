@@ -124,4 +124,17 @@ public class TUserServiceImpl implements TUserService {
             return code;
 
     }
+
+    @Override
+    public boolean updatePassWord(LoginDTO loginDTO) throws Exception {
+        TUser tUser = loginDTOToTuser.convert(loginDTO);
+        List<TUser> result = tUserMapper.queryByName(tUser.getUsername());
+        if (!result.isEmpty()) {
+            // 如果用户名已存在，返回 false
+            tUserMapper.updatePassWord(tUser);
+            return true;
+        }
+        return false;
+
+    }
 }

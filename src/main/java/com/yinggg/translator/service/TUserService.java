@@ -60,4 +60,6 @@ public interface TUserService {
     boolean register(LoginDTO loginDTO) throws Exception;
 
     String SMSLogin(String tel) throws ClientException;
+
+    boolean updatePassWord( LoginDTO loginDTO) throws Exception;
 }
