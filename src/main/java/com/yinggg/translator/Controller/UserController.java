@@ -116,9 +116,9 @@ public class UserController {
      * @return
      */
     @PostMapping("/smsCode")
-    public Result smsLogin(String tel) throws ClientException {
-        String code = tUserService.SMSLogin(tel);
-        redisTemplate.opsForHash().put("code",tel,code);
+    public Result smsLogin(String username) throws ClientException {
+        String code = tUserService.SMSLogin(username);
+        redisTemplate.opsForHash().put("code",username,code);
         return Result.success(code);
     }
 

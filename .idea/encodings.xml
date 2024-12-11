@@ -3,10 +3,11 @@
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="GBK">
     <file url="file://$PROJECT_DIR$/lib" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/com/yinggg/translator/utils/Result.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/AliyunSMSTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/yinggg/translator/utils/Result.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/TQuestionBankMapper.xml" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/TTranslationRecordsMapper.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/TQuestionBankMapper.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/TTranslationRecordsMapper.xml" charset="UTF-8" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

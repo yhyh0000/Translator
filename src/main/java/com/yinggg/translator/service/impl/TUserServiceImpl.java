@@ -120,7 +120,8 @@ public class TUserServiceImpl implements TUserService {
     @Override
     public String SMSLogin(String tel) throws ClientException {
            String code = GenerateCode.generateVerifyCode(6);
-          log.info("信息结果",AliyunSMS.sendSms(tel, code)); ;
+
+          log.info("信息结果",aliyunSMS.sendSms(tel, code)); ;
             return code;
 
     }

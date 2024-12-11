@@ -102,6 +102,14 @@
         where id = #{id}
     </update>
 
+    <update id="updatePassWord">
+        update t_user
+        <set>
+            password = #{password}
+        </set>
+        where username = #{username}
+    </update>
+
     <!--通过主键删除-->
     <delete id="deleteById">
         delete
