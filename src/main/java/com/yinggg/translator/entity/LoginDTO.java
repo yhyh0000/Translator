@@ -24,12 +24,12 @@ public class LoginDTO {
         this.password = password;
     }
 
-    public String getSmsode() {
-        return smsode;
+    public String getSmscode() {
+        return smscode;
     }
 
-    public void setSmsode(String smsode) {
-        this.smsode = smsode;
+    public void setSmscode(String smsode) {
+        this.smscode = smscode;
     }
 
     public String getImgcode() {
@@ -51,7 +51,7 @@ public class LoginDTO {
     private  String username;
     private  String password;
     //短信验证码
-    private  String smsode;
+    private  String smscode;
     //图片验证码
     private  String imgcode;
 

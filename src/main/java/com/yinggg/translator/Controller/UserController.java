@@ -150,7 +150,7 @@ public class UserController {
         Preconditions.checkNotNull(loginDTO.getPassword(), "密码不能为空");
         Preconditions.checkNotNull(loginDTO.getImgcode(), "验证码不能为空");
         Preconditions.checkNotNull(loginDTO.getUuid(), "UUID不能为空");
-        Preconditions.checkNotNull(loginDTO.getSmsode(), "短信验证码不能为空");
+        Preconditions.checkNotNull(loginDTO.getSmscode(), "短信验证码不能为空");
         log.info(JSON.toJSONString(loginDTO));
         // 验证图形验证码
         String captchaKey = loginDTO.getUuid();
@@ -163,7 +163,7 @@ public class UserController {
             return Result.error("图形验证码错误");
         }
         String code = (String) redisTemplate.opsForHash().get("code",loginDTO.getUsername());
-        if (code == null ||!code.equals(loginDTO.getSmsode())) {
+        if (code == null ||!code.equals(loginDTO.getSmscode())) {
             return Result.error("短信验证码错误");
         }
         boolean success =  tUserService.register(loginDTO);
@@ -177,7 +177,7 @@ public class UserController {
         Preconditions.checkNotNull(loginDTO.getPassword(), "密码不能为空");
         Preconditions.checkNotNull(loginDTO.getImgcode(), "验证码不能为空");
         Preconditions.checkNotNull(loginDTO.getUuid(), "UUID不能为空");
-        Preconditions.checkNotNull(loginDTO.getSmsode(), "短信验证码不能为空");
+        Preconditions.checkNotNull(loginDTO.getSmscode(), "短信验证码不能为空");
         log.info(JSON.toJSONString(loginDTO));
         // 验证图形验证码
         log.info(JSON.toJSONString(loginDTO));
@@ -192,7 +192,7 @@ public class UserController {
             return Result.error("图形验证码错误");
         }
         String code = (String) redisTemplate.opsForHash().get("code", loginDTO.getUsername());
-        if (code == null || !code.equals(loginDTO.getSmsode())) {
+        if (code == null || !code.equals(loginDTO.getSmscode())) {
             return Result.error("短信验证码错误");
         }
 
